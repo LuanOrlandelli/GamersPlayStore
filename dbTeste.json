@@ -1,0 +1,191 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Notebook Gamer Zion",
+      "descricao": "Ryzen 7 5700X3D, 16GB RAM DDR4, SSD NVMe 512GB, RTX 4060",
+      "preco": 5499.9,
+      "imagem": "https://picsum.photos/300/200?1",
+      "categoria_id": 1,
+      "estoque": 8,
+      "avaliacao": 4.8,
+      "destaque": true
+    },
+    {
+      "id": 2,
+      "nome": "Notebook Gamer Titan",
+      "descricao": "Intel Core i7-14700H, 32GB RAM DDR5, SSD 1TB, RTX 4070",
+      "preco": 7999.9,
+      "imagem": "https://picsum.photos/300/200?2",
+      "categoria_id": 1,
+      "estoque": 5,
+      "avaliacao": 4.9,
+      "destaque": true
+    },
+    {
+      "id": 3,
+      "nome": "Notebook Gamer Phoenix",
+      "descricao": "Ryzen 9 7940HS, 32GB RAM DDR5, SSD 1TB, RTX 4080",
+      "preco": 10999.9,
+      "imagem": "https://picsum.photos/300/200?3",
+      "categoria_id": 1,
+      "estoque": 3,
+      "avaliacao": 5,
+      "destaque": false
+    },
+    {
+      "id": 4,
+      "nome": "Mouse Falcon RGB",
+      "descricao": "16000 DPI, RGB configurável, 7 botões programáveis",
+      "preco": 249.9,
+      "imagem": "https://picsum.photos/300/200?4",
+      "categoria_id": 2,
+      "estoque": 15,
+      "avaliacao": 4.6,
+      "destaque": false
+    },
+    {
+      "id": 5,
+      "nome": "Mouse Viper Pro",
+      "descricao": "26000 DPI, conexão wireless, bateria de longa duração",
+      "preco": 399.9,
+      "imagem": "https://picsum.photos/300/200?5",
+      "categoria_id": 2,
+      "estoque": 12,
+      "avaliacao": 4.7,
+      "destaque": true
+    },
+    {
+      "id": 6,
+      "nome": "Mouse Striker Lite",
+      "descricao": "12000 DPI, design ergonômico, iluminação LED azul",
+      "preco": 179.9,
+      "imagem": "https://picsum.photos/300/200?6",
+      "categoria_id": 2,
+      "estoque": 22,
+      "avaliacao": 4.4,
+      "destaque": false
+    },
+    {
+      "id": 7,
+      "nome": "Teclado Kronos K87",
+      "descricao": "Mecânico Switch Blue, RGB, padrão ABNT2",
+      "preco": 349.9,
+      "imagem": "https://picsum.photos/300/200?7",
+      "categoria_id": 3,
+      "estoque": 20,
+      "avaliacao": 4.5,
+      "destaque": false
+    },
+    {
+      "id": 8,
+      "nome": "Teclado Olympus TKL",
+      "descricao": "Switch Red, RGB, estrutura em alumínio",
+      "preco": 499.9,
+      "imagem": "https://picsum.photos/300/200?8",
+      "categoria_id": 3,
+      "estoque": 10,
+      "avaliacao": 4.8,
+      "destaque": true
+    },
+    {
+      "id": 9,
+      "nome": "Teclado Atlas Pro",
+      "descricao": "Mecânico Switch Brown, apoio de pulso e iluminação RGB",
+      "preco": 589.9,
+      "imagem": "https://picsum.photos/300/200?9",
+      "categoria_id": 3,
+      "estoque": 9,
+      "avaliacao": 4.7,
+      "destaque": false
+    },
+    {
+      "id": 10,
+      "nome": "Monitor Orion 24",
+      "descricao": "24 polegadas, Full HD, 165Hz, painel IPS",
+      "preco": 1199.9,
+      "imagem": "https://picsum.photos/300/200?10",
+      "categoria_id": 4,
+      "estoque": 7,
+      "avaliacao": 4.6,
+      "destaque": false
+    },
+    {
+      "id": 11,
+      "nome": "Monitor Nebula 27",
+      "descricao": "27 polegadas, QHD, 240Hz, 1ms",
+      "preco": 2499.9,
+      "imagem": "https://picsum.photos/300/200?11",
+      "categoria_id": 4,
+      "estoque": 4,
+      "avaliacao": 4.9,
+      "destaque": true
+    },
+    {
+      "id": 12,
+      "nome": "Monitor Eclipse UltraWide",
+      "descricao": "29 polegadas, UltraWide, 100Hz, bordas finas",
+      "preco": 1899.9,
+      "imagem": "https://picsum.photos/300/200?12",
+      "categoria_id": 4,
+      "estoque": 6,
+      "avaliacao": 4.7,
+      "destaque": false
+    },
+    {
+      "id": 13,
+      "nome": "Headset Eclipse X",
+      "descricao": "Som 7.1, microfone removível, RGB",
+      "preco": 299.9,
+      "imagem": "https://picsum.photos/300/200?13",
+      "categoria_id": 5,
+      "estoque": 18,
+      "avaliacao": 4.5,
+      "destaque": false
+    },
+    {
+      "id": 14,
+      "nome": "Headset Shadow Pro",
+      "descricao": "Wireless, som imersivo, microfone com redução de ruído",
+      "preco": 599.9,
+      "imagem": "https://picsum.photos/300/200?14",
+      "categoria_id": 5,
+      "estoque": 11,
+      "avaliacao": 4.8,
+      "destaque": true
+    },
+    {
+      "id": 15,
+      "nome": "Headset Aurora Lite",
+      "descricao": "Confortável, P2/USB, microfone ajustável",
+      "preco": 199.9,
+      "imagem": "https://picsum.photos/300/200?15",
+      "categoria_id": 5,
+      "estoque": 25,
+      "avaliacao": 4.3,
+      "destaque": false
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Notebooks"
+    },
+    {
+      "id": 2,
+      "nome": "Mouses"
+    },
+    {
+      "id": 3,
+      "nome": "Teclados"
+    },
+    {
+      "id": 4,
+      "nome": "Monitores"
+    },
+    {
+      "id": 5,
+      "nome": "Headsets"
+    }
+  ]
+}
