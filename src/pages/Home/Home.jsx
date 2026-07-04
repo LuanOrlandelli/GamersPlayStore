@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import ProductCard from "../../components/ProductCard/ProductCard";
 import api from "../../services/api";
+import "./Home.css";
 
 function Home() {
   const [produtos, setProdutos] = useState([]);
@@ -18,17 +20,18 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>GamersPlay Store</h1>
+    <main className="home-container">
+      <section className="hero">
+        <h1>GamersPlay Store</h1>
+        <p>Os melhores produtos gamers para o seu setup.</p>
+      </section>
 
-      {produtos.map((produto) => (
-        <div key={produto.id}>
-          <h3>{produto.nome}</h3>
-          <p>{produto.descricao}</p>
-          <p>R$ {produto.preco}</p>
-        </div>
-      ))}
-    </div>
+      <section className="products-grid">
+        {produtos.map((produto) => (
+          <ProductCard key={produto.id} produto={produto} />
+        ))}
+      </section>
+    </main>
   );
 }
 
