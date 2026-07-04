@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
+import { useCart } from "../../context/CartContext";
 import "./ProductDetails.css";
 
 function ProductDetails() {
   const { id } = useParams();
+  const { addToCart } = useCart();
 
   const [produto, setProduto] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -51,27 +53,20 @@ function ProductDetails() {
       <div className="product-info-container">
         <h1>{produto.nome}</h1>
 
-        <p className="rating">
-          ⭐ {produto.avaliacao}
-        </p>
+        <p className="rating">⭐ {produto.avaliacao}</p>
 
-        <p className="description">
-          {produto.descricao}
-        </p>
+        <p className="description">{produto.descricao}</p>
 
-        <p className="price">
-          {precoFormatado}
-        </p>
+        <p className="price">{precoFormatado}</p>
 
-        <p className="installments">
-          12x de {parcela} sem juros
-        </p>
+        <p className="installments">12x de {parcela} sem juros</p>
 
-        <p className="stock">
-          Estoque disponível: {produto.estoque}
-        </p>
+        <p className="stock">Estoque disponível: {produto.estoque}</p>
 
-        <button className="add-cart-button">
+        <button
+          className="add-cart-button"
+          onClick={() => addToCart(produto)}
+        >
           Adicionar ao Carrinho
         </button>
       </div>
