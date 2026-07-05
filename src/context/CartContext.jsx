@@ -1,12 +1,22 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCart = localStorage.getItem("cartItems");
+
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   function addToCart(product) {
-    const itemExists = cartItems.find((item) => item.id === product.id);
+    const itemExists = cartItems.find(
+      (item) => item.id === product.id
+    );
 
     if (itemExists) {
       setCartItems(
@@ -16,6 +26,7 @@ export function CartProvider({ children }) {
             : item
         )
       );
+
       return;
     }
 
@@ -51,7 +62,9 @@ export function CartProvider({ children }) {
   }
 
   function removeFromCart(id) {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+    setCartItems(
+      cartItems.filter((item) => item.id !== id)
+    );
   }
 
   function clearCart() {
@@ -67,7 +80,11 @@ export function CartProvider({ children }) {
     clearCart,
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={value}>
+      {children}
+    </CartContext.Provider>
+  );
 }
 
 export function useCart() {
