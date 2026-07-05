@@ -8,6 +8,7 @@ function Home() {
   const [categorias, setCategorias] = useState([]);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("todos");
   const [termoBusca, setTermoBusca] = useState("");
+  const [ordenacao, setOrdenacao] = useState("");
 
   useEffect(() => {
     async function carregarDados() {
@@ -27,17 +28,37 @@ function Home() {
     carregarDados();
   }, []);
 
-  const produtosFiltrados = produtos.filter((produto) => {
-    const correspondeCategoria =
-      categoriaSelecionada === "todos" ||
-      produto.categoria_id === Number(categoriaSelecionada);
+  const produtosFiltrados = produtos
+    .filter((produto) => {
+      const correspondeCategoria =
+        categoriaSelecionada === "todos" ||
+        produto.categoria_id === Number(categoriaSelecionada);
 
-    const correspondeBusca =
-      produto.nome.toLowerCase().includes(termoBusca.toLowerCase()) ||
-      produto.descricao.toLowerCase().includes(termoBusca.toLowerCase());
+      const correspondeBusca =
+        produto.nome.toLowerCase().includes(termoBusca.toLowerCase()) ||
+        produto.descricao.toLowerCase().includes(termoBusca.toLowerCase());
 
-    return correspondeCategoria && correspondeBusca;
-  });
+      return correspondeCategoria && correspondeBusca;
+    })
+    .sort((a, b) => {
+      if (ordenacao === "menor-preco") {
+        return a.preco - b.preco;
+      }
+
+      if (ordenacao === "maior-preco") {
+        return b.preco - a.preco;
+      }
+
+      if (ordenacao === "melhor-avaliacao") {
+        return b.avaliacao - a.avaliacao;
+      }
+
+      if (ordenacao === "nome-az") {
+        return a.nome.localeCompare(b.nome);
+      }
+
+      return 0;
+    });
 
   return (
     <main className="home-container">
@@ -53,6 +74,17 @@ function Home() {
           value={termoBusca}
           onChange={(event) => setTermoBusca(event.target.value)}
         />
+
+        <select
+          value={ordenacao}
+          onChange={(event) => setOrdenacao(event.target.value)}
+        >
+          <option value="">Ordenar por</option>
+          <option value="menor-preco">Menor preço</option>
+          <option value="maior-preco">Maior preço</option>
+          <option value="melhor-avaliacao">Melhor avaliação</option>
+          <option value="nome-az">Nome A-Z</option>
+        </select>
       </section>
 
       <section className="filters">
