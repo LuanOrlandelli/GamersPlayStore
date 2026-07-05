@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import { useCart } from "../../context/CartContext";
+import ProductCard from "../../components/ProductCard/ProductCard";
 import "./ProductDetails.css";
 
 function ProductDetails() {
@@ -9,6 +10,7 @@ function ProductDetails() {
   const { addToCart } = useCart();
 
   const [produto, setProduto] = useState(null);
+  const [produtosRelacionados, setProdutosRelacionados] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showToast, setShowToast] = useState(false);
 
@@ -16,7 +18,21 @@ function ProductDetails() {
     async function carregarProduto() {
       try {
         const response = await api.get(`/produtos/${id}`);
-        setProduto(response.data);
+        const produtoAtual = response.data;
+
+        setProduto(produtoAtual);
+
+        const relacionadosResponse = await api.get("/produtos");
+
+        const relacionados = relacionadosResponse.data
+          .filter(
+            (item) =>
+              item.categoria_id === produtoAtual.categoria_id &&
+              item.id !== produtoAtual.id
+          )
+          .slice(0, 3);
+
+        setProdutosRelacionados(relacionados);
       } catch (error) {
         console.error("Erro ao carregar produto:", error);
       } finally {
@@ -37,11 +53,11 @@ function ProductDetails() {
   }
 
   if (loading) {
-    return <h2>Carregando produto...</h2>;
+    return <h2 className="loading-message">Carregando produto...</h2>;
   }
 
   if (!produto) {
-    return <h2>Produto não encontrado.</h2>;
+    return <h2 className="loading-message">Produto não encontrado.</h2>;
   }
 
   const precoFormatado = produto.preco.toLocaleString("pt-BR", {
@@ -56,37 +72,64 @@ function ProductDetails() {
 
   return (
     <>
-      {showToast && (
-        <div className="toast">
-          Produto adicionado ao carrinho!
-        </div>
-      )}
+      {showToast && <div className="toast">Produto adicionado ao carrinho!</div>}
 
-      <main className="product-details-container">
-        <div className="product-image-container">
-          <img src={produto.imagem} alt={produto.nome} />
-        </div>
+      <main className="product-details-page">
+        <section className="product-details-container">
+          <div className="product-image-container">
+            <img src={produto.imagem} alt={produto.nome} />
+          </div>
 
-        <div className="product-info-container">
-          <h1>{produto.nome}</h1>
+          <div className="product-info-container">
+            {produto.destaque && <span className="details-badge">Destaque</span>}
 
-          <p className="rating">⭐ {produto.avaliacao}</p>
+            <h1>{produto.nome}</h1>
 
-          <p className="description">{produto.descricao}</p>
+            <p className="rating">⭐ {produto.avaliacao}</p>
 
-          <p className="price">{precoFormatado}</p>
+            <p className="description">{produto.descricao}</p>
 
-          <p className="installments">12x de {parcela} sem juros</p>
+            <p className="price">{precoFormatado}</p>
 
-          <p className="stock">Estoque disponível: {produto.estoque}</p>
+            <p className="installments">12x de {parcela} sem juros</p>
 
-          <button
-            className="add-cart-button"
-            onClick={handleAddToCart}
-          >
-            Adicionar ao Carrinho
-          </button>
-        </div>
+            <p className="stock">Estoque disponível: {produto.estoque}</p>
+
+            <button className="add-cart-button" onClick={handleAddToCart}>
+              Adicionar ao Carrinho
+            </button>
+
+            <div className="purchase-benefits">
+              <div>✅ Produto em estoque</div>
+              <div>🚚 Envio imediato</div>
+              <div>🔒 Compra segura</div>
+              <div>💳 Até 12x sem juros</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="details-section">
+          <h2>Detalhes do Produto</h2>
+
+          <p>
+            O {produto.nome} foi selecionado para quem busca desempenho,
+            qualidade e uma experiência gamer mais completa. Ideal para montar
+            ou melhorar o setup, oferecendo excelente custo-benefício dentro da
+            sua categoria.
+          </p>
+        </section>
+
+        {produtosRelacionados.length > 0 && (
+          <section className="related-products-section">
+            <h2>Você também pode gostar</h2>
+
+            <div className="related-products-grid">
+              {produtosRelacionados.map((item) => (
+                <ProductCard key={item.id} produto={item} />
+              ))}
+            </div>
+          </section>
+        )}
       </main>
     </>
   );
