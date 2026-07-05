@@ -20,24 +20,31 @@ function ProductDetails() {
   useEffect(() => {
     async function carregarProduto() {
       try {
-        const response = await api.get(`/produtos/${id}`);
-        const produtoAtual = response.data;
+        const response = await api.get("/produtos");
+
+        const produtoAtual = response.data.find(
+          (item) => String(item.id) === String(id)
+        );
+
+        if (!produtoAtual) {
+          setProduto(null);
+          return;
+        }
 
         setProduto(produtoAtual);
 
-        const relacionadosResponse = await api.get("/produtos");
-
-        const relacionados = relacionadosResponse.data
+        const relacionados = response.data
           .filter(
             (item) =>
-              item.categoria_id === produtoAtual.categoria_id &&
-              item.id !== produtoAtual.id
+              String(item.categoria_id) === String(produtoAtual.categoria_id) &&
+              String(item.id) !== String(produtoAtual.id)
           )
           .slice(0, 3);
 
         setProdutosRelacionados(relacionados);
       } catch (error) {
         console.error("Erro ao carregar produto:", error);
+        setProduto(null);
       } finally {
         setLoading(false);
       }
@@ -61,29 +68,23 @@ function ProductDetails() {
 
   const favorited = isFavorite(produto.id);
 
-  const precoFormatado = produto.preco.toLocaleString("pt-BR", {
+  const precoFormatado = Number(produto.preco).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
 
-  const parcela = (produto.preco / 12).toLocaleString("pt-BR", {
+  const parcela = (Number(produto.preco) / 12).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
+
+  const estoque = Number(produto.estoque);
 
   const estoqueClasse =
-    produto.estoque === 0
-      ? "out"
-      : produto.estoque <= 10
-      ? "low"
-      : "available";
+    estoque === 0 ? "out" : estoque <= 10 ? "low" : "available";
 
   const estoqueTexto =
-    produto.estoque === 0
-      ? "Esgotado"
-      : produto.estoque <= 10
-      ? "Últimas unidades"
-      : "Em estoque";
+    estoque === 0 ? "Esgotado" : estoque <= 10 ? "Últimas unidades" : "Em estoque";
 
   return (
     <>
@@ -135,16 +136,14 @@ function ProductDetails() {
 
             <p className="installments">12x de {parcela} sem juros</p>
 
-            <p className="stock">Estoque disponível: {produto.estoque}</p>
+            <p className="stock">Estoque disponível: {estoque}</p>
 
             <button
               className="add-cart-button"
               onClick={handleAddToCart}
-              disabled={produto.estoque === 0}
+              disabled={estoque === 0}
             >
-              {produto.estoque === 0
-                ? "Produto esgotado"
-                : "Adicionar ao Carrinho"}
+              {estoque === 0 ? "Produto esgotado" : "Adicionar ao Carrinho"}
             </button>
 
             <div className="purchase-benefits">
