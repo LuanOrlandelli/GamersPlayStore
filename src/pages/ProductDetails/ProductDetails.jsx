@@ -10,6 +10,7 @@ function ProductDetails() {
 
   const [produto, setProduto] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     async function carregarProduto() {
@@ -25,6 +26,15 @@ function ProductDetails() {
 
     carregarProduto();
   }, [id]);
+
+  function handleAddToCart() {
+    addToCart(produto);
+    setShowToast(true);
+
+    setTimeout(() => {
+      setShowToast(false);
+    }, 2500);
+  }
 
   if (loading) {
     return <h2>Carregando produto...</h2>;
@@ -45,32 +55,40 @@ function ProductDetails() {
   });
 
   return (
-    <main className="product-details-container">
-      <div className="product-image-container">
-        <img src={produto.imagem} alt={produto.nome} />
-      </div>
+    <>
+      {showToast && (
+        <div className="toast">
+          Produto adicionado ao carrinho!
+        </div>
+      )}
 
-      <div className="product-info-container">
-        <h1>{produto.nome}</h1>
+      <main className="product-details-container">
+        <div className="product-image-container">
+          <img src={produto.imagem} alt={produto.nome} />
+        </div>
 
-        <p className="rating">⭐ {produto.avaliacao}</p>
+        <div className="product-info-container">
+          <h1>{produto.nome}</h1>
 
-        <p className="description">{produto.descricao}</p>
+          <p className="rating">⭐ {produto.avaliacao}</p>
 
-        <p className="price">{precoFormatado}</p>
+          <p className="description">{produto.descricao}</p>
 
-        <p className="installments">12x de {parcela} sem juros</p>
+          <p className="price">{precoFormatado}</p>
 
-        <p className="stock">Estoque disponível: {produto.estoque}</p>
+          <p className="installments">12x de {parcela} sem juros</p>
 
-        <button
-          className="add-cart-button"
-          onClick={() => addToCart(produto)}
-        >
-          Adicionar ao Carrinho
-        </button>
-      </div>
-    </main>
+          <p className="stock">Estoque disponível: {produto.estoque}</p>
+
+          <button
+            className="add-cart-button"
+            onClick={handleAddToCart}
+          >
+            Adicionar ao Carrinho
+          </button>
+        </div>
+      </main>
+    </>
   );
 }
 
