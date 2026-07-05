@@ -1,4 +1,6 @@
 .product-card {
+  width: 100%;
+  min-height: 460px;
   background-color: #ffffff;
   border-radius: 12px;
   overflow: hidden;
@@ -76,4 +78,10 @@
 
 .details-button:hover {
   background-color: #2563eb;
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%;
+  }
 }

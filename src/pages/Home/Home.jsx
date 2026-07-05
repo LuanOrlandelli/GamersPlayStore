@@ -7,6 +7,7 @@ function Home() {
   const [produtos, setProdutos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("todos");
+  const [termoBusca, setTermoBusca] = useState("");
 
   useEffect(() => {
     async function carregarDados() {
@@ -26,18 +27,32 @@ function Home() {
     carregarDados();
   }, []);
 
-  const produtosFiltrados =
-    categoriaSelecionada === "todos"
-      ? produtos
-      : produtos.filter(
-          (produto) => produto.categoria_id === Number(categoriaSelecionada)
-        );
+  const produtosFiltrados = produtos.filter((produto) => {
+    const correspondeCategoria =
+      categoriaSelecionada === "todos" ||
+      produto.categoria_id === Number(categoriaSelecionada);
+
+    const correspondeBusca =
+      produto.nome.toLowerCase().includes(termoBusca.toLowerCase()) ||
+      produto.descricao.toLowerCase().includes(termoBusca.toLowerCase());
+
+    return correspondeCategoria && correspondeBusca;
+  });
 
   return (
     <main className="home-container">
       <section className="hero">
         <h1>GamersPlay Store</h1>
         <p>Os melhores produtos gamers para o seu setup.</p>
+      </section>
+
+      <section className="search-area">
+        <input
+          type="text"
+          placeholder="Buscar por produto ou configuração..."
+          value={termoBusca}
+          onChange={(event) => setTermoBusca(event.target.value)}
+        />
       </section>
 
       <section className="filters">
@@ -61,11 +76,15 @@ function Home() {
         ))}
       </section>
 
-      <section className="products-grid">
-        {produtosFiltrados.map((produto) => (
-          <ProductCard key={produto.id} produto={produto} />
-        ))}
-      </section>
+      {produtosFiltrados.length === 0 ? (
+        <p className="empty-products">Nenhum produto encontrado.</p>
+      ) : (
+        <section className="products-grid">
+          {produtosFiltrados.map((produto) => (
+            <ProductCard key={produto.id} produto={produto} />
+          ))}
+        </section>
+      )}
     </main>
   );
 }
