@@ -13,25 +13,27 @@ function ProductCard({ produto }) {
   });
 
   return (
-    <div className="product-card">
+    <Link to={`/produto/${produto.id}`} className="product-card">
       <img src={produto.imagem} alt={produto.nome} className="product-image" />
 
       <div className="product-info">
-        {produto.destaque && <span className="badge">Destaque</span>}
+        <div>
+          {produto.destaque && <span className="badge">Destaque</span>}
 
-        <h3>{produto.nome}</h3>
-        <p className="product-description">{produto.descricao}</p>
+          <h3>{produto.nome}</h3>
 
-        <p className="rating">⭐ {produto.avaliacao}</p>
+          <p className="product-description">{produto.descricao}</p>
+        </div>
 
-        <p className="price">{precoFormatado}</p>
-        <p className="installments">12x de {parcela} sem juros</p>
+        <div className="product-bottom">
+          <p className="rating">⭐ {produto.avaliacao}</p>
 
-        <Link to={`/produto/${produto.id}`} className="details-button">
-          Ver detalhes
-        </Link>
+          <p className="price">{precoFormatado}</p>
+
+          <p className="installments">12x de {parcela} sem juros</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
