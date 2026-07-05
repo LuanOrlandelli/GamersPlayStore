@@ -22,6 +22,20 @@ function ProductCard({ produto }) {
     currency: "BRL",
   });
 
+  const estoqueClasse =
+    produto.estoque === 0
+      ? "out"
+      : produto.estoque <= 10
+      ? "low"
+      : "available";
+
+  const estoqueTexto =
+    produto.estoque === 0
+      ? "Esgotado"
+      : produto.estoque <= 10
+      ? "Últimas unidades"
+      : "Em estoque";
+
   function handleAddToCart() {
     addToCart(produto);
     setShowModal(true);
@@ -36,10 +50,7 @@ function ProductCard({ produto }) {
   return (
     <>
       {showModal && (
-        <AddToCartModal
-          produto={produto}
-          onClose={() => setShowModal(false)}
-        />
+        <AddToCartModal produto={produto} onClose={() => setShowModal(false)} />
       )}
 
       <article className="product-card">
@@ -47,25 +58,21 @@ function ProductCard({ produto }) {
           className={`favorite-button ${favorited ? "active" : ""}`}
           onClick={handleFavoriteClick}
           type="button"
-          title={
-            favorited
-              ? "Remover dos favoritos"
-              : "Adicionar aos favoritos"
-          }
+          title={favorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
         >
           {favorited ? "♥" : "♡"}
         </button>
 
         <Link to={`/produto/${produto.id}`} className="product-card-link">
-          <img
-            src={produto.imagem}
-            alt={produto.nome}
-            className="product-image"
-          />
+          <img src={produto.imagem} alt={produto.nome} className="product-image" />
 
           <div className="product-info">
             <div>
               {produto.destaque && <span className="badge">Destaque</span>}
+
+              <span className={`stock-badge ${estoqueClasse}`}>
+                {estoqueTexto}
+              </span>
 
               <h3>{produto.nome}</h3>
 
@@ -87,6 +94,7 @@ function ProductCard({ produto }) {
                   }}
                   title="Adicionar ao carrinho"
                   type="button"
+                  disabled={produto.estoque === 0}
                 >
                   🛒+
                 </button>

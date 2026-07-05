@@ -8,7 +8,6 @@
   box-shadow: 0 4px 14px var(--shadow-color);
   transition: transform 0.2s ease, box-shadow 0.2s ease,
     background-color 0.3s ease;
-
   display: flex;
   flex-direction: column;
 }
@@ -23,22 +22,17 @@
   top: 12px;
   right: 12px;
   z-index: 2;
-
   width: 36px;
   height: 36px;
   border: none;
   border-radius: 50%;
-
   background-color: rgba(255, 255, 255, 0.92);
   color: #6b7280;
-
   font-size: 1.45rem;
   line-height: 1;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
   transition: transform 0.2s ease, background-color 0.2s ease,
     color 0.2s ease;
@@ -80,21 +74,37 @@ body.dark .favorite-button.active {
 .product-info {
   flex: 1;
   padding: 16px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.badge {
+.badge,
+.stock-badge {
   display: inline-block;
   margin-bottom: 10px;
+  margin-right: 6px;
   padding: 4px 10px;
   border-radius: 999px;
-  background-color: #2563eb;
   color: #ffffff;
   font-size: 0.75rem;
   font-weight: 700;
+}
+
+.badge {
+  background-color: #2563eb;
+}
+
+.stock-badge.available {
+  background-color: #16a34a;
+}
+
+.stock-badge.low {
+  background-color: #f59e0b;
+}
+
+.stock-badge.out {
+  background-color: #dc2626;
 }
 
 .product-info h3 {
@@ -134,26 +144,27 @@ body.dark .favorite-button.active {
 .mini-cart-button {
   width: 38px;
   height: 38px;
-
   border: none;
   border-radius: 50%;
-
   background-color: #2563eb;
   color: white;
-
   font-size: 0.95rem;
   font-weight: bold;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   transition: all 0.2s ease;
 }
 
 .mini-cart-button:hover {
   transform: scale(1.08);
   background-color: #1d4ed8;
+}
+
+.mini-cart-button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .installments {

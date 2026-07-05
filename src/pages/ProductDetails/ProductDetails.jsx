@@ -67,13 +67,24 @@ function ProductDetails() {
     currency: "BRL",
   });
 
+  const estoqueClasse =
+    produto.estoque === 0
+      ? "out"
+      : produto.estoque <= 10
+      ? "low"
+      : "available";
+
+  const estoqueTexto =
+    produto.estoque === 0
+      ? "Esgotado"
+      : produto.estoque <= 10
+      ? "Últimas unidades"
+      : "Em estoque";
+
   return (
     <>
       {showModal && (
-        <AddToCartModal
-          produto={produto}
-          onClose={() => setShowModal(false)}
-        />
+        <AddToCartModal produto={produto} onClose={() => setShowModal(false)} />
       )}
 
       <main className="product-details-page">
@@ -83,7 +94,13 @@ function ProductDetails() {
           </div>
 
           <div className="product-info-container">
-            {produto.destaque && <span className="details-badge">Destaque</span>}
+            <div className="details-badges">
+              {produto.destaque && <span className="details-badge">Destaque</span>}
+
+              <span className={`details-stock-badge ${estoqueClasse}`}>
+                {estoqueTexto}
+              </span>
+            </div>
 
             <h1>{produto.nome}</h1>
 
@@ -97,8 +114,12 @@ function ProductDetails() {
 
             <p className="stock">Estoque disponível: {produto.estoque}</p>
 
-            <button className="add-cart-button" onClick={handleAddToCart}>
-              Adicionar ao Carrinho
+            <button
+              className="add-cart-button"
+              onClick={handleAddToCart}
+              disabled={produto.estoque === 0}
+            >
+              {produto.estoque === 0 ? "Produto esgotado" : "Adicionar ao Carrinho"}
             </button>
 
             <div className="purchase-benefits">
