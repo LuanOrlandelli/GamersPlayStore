@@ -28,6 +28,10 @@ function Home() {
     carregarDados();
   }, []);
 
+  const produtosDestaque = produtos
+    .filter((produto) => produto.destaque)
+    .slice(0, 3);
+
   const produtosFiltrados = produtos
     .filter((produto) => {
       const correspondeCategoria =
@@ -41,21 +45,10 @@ function Home() {
       return correspondeCategoria && correspondeBusca;
     })
     .sort((a, b) => {
-      if (ordenacao === "menor-preco") {
-        return a.preco - b.preco;
-      }
-
-      if (ordenacao === "maior-preco") {
-        return b.preco - a.preco;
-      }
-
-      if (ordenacao === "melhor-avaliacao") {
-        return b.avaliacao - a.avaliacao;
-      }
-
-      if (ordenacao === "nome-az") {
-        return a.nome.localeCompare(b.nome);
-      }
+      if (ordenacao === "menor-preco") return a.preco - b.preco;
+      if (ordenacao === "maior-preco") return b.preco - a.preco;
+      if (ordenacao === "melhor-avaliacao") return b.avaliacao - a.avaliacao;
+      if (ordenacao === "nome-az") return a.nome.localeCompare(b.nome);
 
       return 0;
     });
@@ -63,8 +56,39 @@ function Home() {
   return (
     <main className="home-container">
       <section className="hero">
-        <h1>GamersPlay Store</h1>
-        <p>Os melhores produtos gamers para o seu setup.</p>
+        <div className="hero-content">
+          <span className="hero-tag">Tech Store Gamer</span>
+
+          <h1>Monte o setup dos seus sonhos</h1>
+
+          <p>
+            Notebooks, periféricos e acessórios selecionados para quem busca
+            performance, estilo e tecnologia.
+          </p>
+
+          <div className="hero-actions">
+            <a href="#produtos" className="hero-button primary">
+              Explorar produtos
+            </a>
+          </div>
+        </div>
+
+        <div className="hero-highlight">
+          <h2>Produtos em destaque</h2>
+
+          {produtosDestaque.map((produto) => (
+            <div key={produto.id} className="highlight-item">
+              <span>{produto.nome}</span>
+
+              <strong>
+                {produto.preco.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </strong>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="search-area">
@@ -111,7 +135,7 @@ function Home() {
       {produtosFiltrados.length === 0 ? (
         <p className="empty-products">Nenhum produto encontrado.</p>
       ) : (
-        <section className="products-grid">
+        <section className="products-grid" id="produtos">
           {produtosFiltrados.map((produto) => (
             <ProductCard key={produto.id} produto={produto} />
           ))}

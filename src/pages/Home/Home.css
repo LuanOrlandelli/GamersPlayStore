@@ -5,20 +5,100 @@
 }
 
 .hero {
-  margin-bottom: 24px;
-  padding: 32px;
-  border-radius: 16px;
+  margin-bottom: 28px;
+  padding: 36px;
+  border-radius: 22px;
   background: linear-gradient(135deg, #111827, #1d4ed8);
   color: #ffffff;
+
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: 32px;
+  align-items: center;
+}
+
+body.dark .hero {
+  background: linear-gradient(135deg, #020617, #1e3a8a);
+}
+
+.hero-tag {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #dbeafe;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .hero h1 {
-  margin-bottom: 8px;
-  font-size: 2.4rem;
+  max-width: 600px;
+  margin-bottom: 14px;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.05;
 }
 
 .hero p {
+  max-width: 560px;
   color: #dbeafe;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.hero-button {
+  padding: 13px 20px;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+.hero-button.primary {
+  background-color: #ffffff;
+  color: #1d4ed8;
+}
+
+.hero-button.primary:hover {
+  background-color: #dbeafe;
+}
+
+.hero-highlight {
+  padding: 22px;
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.hero-highlight h2 {
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+}
+
+.highlight-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.highlight-item:last-child {
+  border-bottom: none;
+}
+
+.highlight-item span {
+  color: #e0f2fe;
+}
+
+.highlight-item strong {
+  white-space: nowrap;
+  color: #86efac;
 }
 
 .search-area {
@@ -41,19 +121,12 @@
 }
 
 .search-area select {
-  width: 100%;
-  padding: 14px 50px 14px 18px;
-  border: 1px solid #d1d5db;
-  border-radius: 12px;
-  font-size: 1rem;
-  outline: none;
-  background-color: #ffffff;
-
+  padding-right: 48px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' viewBox='0 0 20 20'%3E%3Cpath fill='%236b7280' d='M5.5 7.5L10 12l4.5-4.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20'%3E%3Cpath fill='%236b7280' d='M5.5 7.5L10 12l4.5-4.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 18px center;
 }
@@ -61,6 +134,15 @@
 .search-area input:focus,
 .search-area select:focus {
   border-color: #2563eb;
+}
+
+body.dark .search-area select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20'%3E%3Cpath fill='%23f8fafc' d='M5.5 7.5L10 12l4.5-4.5'/%3E%3C/svg%3E");
+}
+
+body.dark .search-area select option {
+  background-color: #1e293b;
+  color: #f8fafc;
 }
 
 .filters {
@@ -100,26 +182,13 @@
   gap: 24px;
 }
 
-.search-area select {
-  color: var(--text-primary);
-  background-color: var(--bg-secondary);
-}
-
-body.dark .search-area select {
-  color: #f8fafc;
-  background-color: #1e293b;
-  border-color: #334155;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' viewBox='0 0 20 20'%3E%3Cpath fill='%23f8fafc' d='M5.5 7.5L10 12l4.5-4.5'/%3E%3C/svg%3E");
-}
-
-body.dark .search-area select option {
-  background-color: #1e293b;
-  color: #f8fafc;
-}
-
 @media (max-width: 1100px) {
   .products-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -136,5 +205,22 @@ body.dark .search-area select option {
 @media (max-width: 560px) {
   .products-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 28px 22px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-button {
+    text-align: center;
+  }
+
+  .highlight-item {
+    flex-direction: column;
+    gap: 4px;
   }
 }
