@@ -11,6 +11,29 @@
 
 ---
 
+## Demonstração Online
+
+🔗 https://gamers-play-store-gules.vercel.app/
+
+---
+
+## Principais Recursos
+
+✅ React + Vite  
+✅ React Router DOM  
+✅ Context API  
+✅ JSON Server  
+✅ Axios  
+✅ Dark Mode  
+✅ Favoritos  
+✅ Carrinho Lateral (Drawer)  
+✅ Checkout  
+✅ LocalStorage  
+✅ Responsivo  
+✅ Deploy no Vercel
+
+---
+
 ## Sobre o Projeto
 
 A **GamersPlayStore** é uma aplicação de e-commerce desenvolvida utilizando React, criada para simular uma loja virtual moderna de produtos gamers.
@@ -23,20 +46,33 @@ Além dos requisitos obrigatórios do desafio, foram implementadas funcionalidad
 
 # Screenshots
 
+### Página Inicial
 
-## Página Inicial
+Visualização principal da loja com produtos em destaque, busca, filtros, ordenação e navegação intuitiva.
 
 <img width="1397" height="944" alt="Home" src="https://github.com/user-attachments/assets/18b8e263-9116-46ae-b375-ed3577627540" />
 
-## Detalhes do Produto
+---
+
+### Detalhes do Produto
+
+Página individual contendo descrição, avaliação, estoque, favoritos e produtos relacionados.
 
 <img width="1193" height="944" alt="Produto" src="https://github.com/user-attachments/assets/78b25931-66fe-4a90-8548-0fae736f780b" />
 
-## Carrinho Lateral
+---
+
+### Carrinho Lateral
+
+Acesso rápido ao carrinho sem sair da página atual.
 
 <img width="1422" height="941" alt="Carrinho Lateral" src="https://github.com/user-attachments/assets/d7285e4d-2bd5-4d68-be4f-5700ccb9e7f2" />
 
-## Favoritos
+---
+
+### Favoritos
+
+Área dedicada para armazenar produtos favoritos do usuário.
 
 <img width="1130" height="940" alt="Favoritos" src="https://github.com/user-attachments/assets/981b5aca-639b-4d9f-bf7d-6636d451ca5b" />
 
@@ -52,7 +88,7 @@ Durante o desenvolvimento foram aplicados conceitos relacionados a:
 
 - Componentização
 - Reutilização de código
-- React Router
+- React Router DOM
 - Context API
 - Gerenciamento de estado
 - Manipulação de eventos
@@ -121,6 +157,10 @@ O projeto foi desenvolvido buscando simular um ambiente próximo ao desenvolvime
 - Git
 - GitHub
 
+## Hospedagem
+
+- Vercel
+
 ---
 
 # Funcionalidades Implementadas
@@ -176,6 +216,9 @@ O projeto foi desenvolvido buscando simular um ambiente próximo ao desenvolvime
 - Dark Mode
 - Modal de confirmação ao adicionar produtos
 - Página 404 personalizada
+- Header fixo durante navegação
+- Logo personalizada
+- Favicon personalizado
 - Responsividade
 - Indicadores visuais de estoque
 - Feedback visual para ações do usuário
@@ -449,9 +492,7 @@ npm run lint
 
 ---
 
-# Diferenciais Implementados
-
-Além dos requisitos obrigatórios do desafio, foram implementados:
+# Diferenciais Além dos Requisitos Propostos
 
 - Dark Mode com persistência
 - Página de Favoritos
@@ -463,6 +504,10 @@ Além dos requisitos obrigatórios do desafio, foram implementados:
 - Compra rápida pelos cards
 - Página 404 personalizada
 - Persistência de dados com LocalStorage
+- Deploy em produção utilizando Vercel
+- Header fixo
+- Favicon personalizado
+- Identidade visual própria
 - Filtro por categoria
 - Busca por produtos
 - Ordenação dinâmica
@@ -497,4 +542,6 @@ O objetivo foi construir uma aplicação próxima de um cenário real de mercado
 
 **Luan Orlandelli Ramos**
 
-Projeto desenvolvido para processo seletivo de **Estágio em Desenvolvimento Front-end**.
+Desenvolvedor Front-end em formação, com foco em React, JavaScript e desenvolvimento de aplicações web modernas.
+
+Projeto desenvolvido como desafio técnico para vaga de Estágio em Desenvolvimento Front-end.
