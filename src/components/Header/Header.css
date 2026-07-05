@@ -1,23 +1,38 @@
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1100;  
   background-color: #111827;
-  color: white;
-  padding: 16px 0;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+  padding: 0;
+  overflow: visible;
 }
 
 .header-container {
   width: min(1200px, 100%);
   margin: 0 auto;
   padding: 0 20px;
+  min-height: 75px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: visible;
 }
 
 .logo {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: white;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 72px;
+}
+
+.logo-image {
+  height: 113px;
+  width: auto;
+  display: block;
+  position: relative;
+  top: 7px;
 }
 
 .nav-actions {

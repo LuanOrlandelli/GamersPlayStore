@@ -22,7 +22,11 @@ function Header() {
       <header className="header">
         <div className="header-container">
           <Link to="/" className="logo">
-            GamersPlay Store
+            <img
+              src="/GamersPlayStore.png"
+              alt="GamersPlay Store"
+              className="logo-image"
+            />
           </Link>
 
           <nav className="nav-actions">
