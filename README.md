@@ -3,7 +3,7 @@
 ![React](https://img.shields.io/badge/React-19-blue)
 ![Vite](https://img.shields.io/badge/Vite-7-purple)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
-![JSON Server](https://img.shields.io/badge/JSON_Server-API-green)
+![MockAPI](https://img.shields.io/badge/MockAPI-REST_API-green)
 ![Git](https://img.shields.io/badge/Git-Version_Control-orange)
 
 ### Projeto desenvolvido por Luan Orlandelli Ramos
@@ -22,23 +22,23 @@
 ✅ React + Vite  
 ✅ React Router DOM  
 ✅ Context API  
-✅ JSON Server  
+✅ API REST mockada  
 ✅ Axios  
 ✅ Dark Mode  
 ✅ Favoritos  
-✅ Carrinho Lateral (Drawer)  
+✅ Carrinho Lateral  
 ✅ Checkout  
 ✅ LocalStorage  
 ✅ Responsivo  
-✅ Deploy no Vercel
+✅ Deploy no Vercel  
 
 ---
 
 ## Sobre o Projeto
 
-A **GamersPlayStore** é uma aplicação de e-commerce desenvolvida utilizando React, criada para simular uma loja virtual moderna de produtos gamers.
+A **GamersPlayStore** é uma aplicação de e-commerce desenvolvida em React, criada para simular uma loja virtual moderna de produtos gamers.
 
-O projeto foi desenvolvido consumindo uma API REST simulada através do JSON Server, permitindo uma arquitetura desacoplada entre front-end e back-end, semelhante a cenários reais de desenvolvimento de produtos.
+O projeto consome uma API REST mockada pública, permitindo que a aplicação funcione tanto localmente quanto em produção, sem necessidade de rodar um servidor local.
 
 Além dos requisitos obrigatórios do desafio, foram implementadas funcionalidades adicionais com foco em experiência do usuário, organização de código, componentização, gerenciamento de estado e boas práticas de desenvolvimento Front-end.
 
@@ -93,7 +93,7 @@ Durante o desenvolvimento foram aplicados conceitos relacionados a:
 - Gerenciamento de estado
 - Manipulação de eventos
 - Consumo de APIs REST
-- Navegação SPA (Single Page Application)
+- Navegação SPA
 
 ### Resolução de Problemas
 
@@ -122,10 +122,6 @@ Durante o desenvolvimento foram aplicados conceitos relacionados a:
 - Documentação completa
 - Componentização de telas e funcionalidades
 
-### Aprendizado Contínuo
-
-O projeto foi desenvolvido buscando simular um ambiente próximo ao desenvolvimento de produtos reais, aplicando conceitos modernos do ecossistema React e práticas utilizadas no mercado.
-
 ---
 
 # Tecnologias Utilizadas
@@ -134,7 +130,7 @@ O projeto foi desenvolvido buscando simular um ambiente próximo ao desenvolvime
 
 - React
 - Vite
-- JavaScript (ES6+)
+- JavaScript
 - React Router DOM
 - Axios
 - CSS3
@@ -148,9 +144,9 @@ O projeto foi desenvolvido buscando simular um ambiente próximo ao desenvolvime
 
 - LocalStorage
 
-## Simulação de Back-end
+## API
 
-- JSON Server
+- MockAPI
 
 ## Controle de Versão
 
@@ -182,7 +178,7 @@ O projeto foi desenvolvido buscando simular um ambiente próximo ao desenvolvime
 - Filtro por categoria
 - Ordenação por:
   - Menor preço
-  - Maior preço
+  - Maiior preço
   - Melhor avaliação
   - Nome A-Z
 
@@ -191,7 +187,7 @@ O projeto foi desenvolvido buscando simular um ambiente próximo ao desenvolvime
 - Adicionar produtos
 - Remover produtos
 - Alterar quantidades
-- Carrinho lateral (Drawer)
+- Carrinho lateral
 - Página completa do carrinho
 - Persistência com LocalStorage
 - Cálculo automático do valor total
@@ -231,8 +227,6 @@ A aplicação foi estruturada seguindo princípios de componentização e separa
 
 ## Context API
 
-A Context API foi utilizada para centralizar estados globais sem a necessidade de bibliotecas externas.
-
 Foram criados contextos independentes:
 
 ### CartContext
@@ -261,21 +255,22 @@ Responsável por:
 
 ---
 
-## JSON Server
+## API REST Mockada
 
-O JSON Server foi utilizado para simular um ambiente real de integração com APIs REST.
+A aplicação consome uma API REST mockada pública, permitindo o funcionamento em ambiente de produção sem depender de um servidor local.
 
 Isso permitiu:
 
-- Separação entre front-end e back-end
+- Separação entre front-end e dados
 - Consumo de dados via HTTP
+- Funcionamento no deploy da Vercel
 - Simulação de endpoints reais
 
 ---
 
 ## React Router
 
-A navegação da aplicação foi construída utilizando React Router DOM.
+A navegação foi construída utilizando React Router DOM.
 
 Rotas implementadas:
 
@@ -336,7 +331,7 @@ src/
 
 ---
 
-# Como Executar o Projeto
+# Como Executar o Projeto Localmente
 
 ## Pré-requisitos
 
@@ -378,30 +373,7 @@ npm install
 
 ---
 
-## 3. Iniciar o JSON Server
-
-Em um terminal execute:
-
-```bash
-npm run server
-```
-
-A API será iniciada em:
-
-```txt
-http://localhost:3001
-```
-
-Endpoints:
-
-```txt
-http://localhost:3001/produtos
-http://localhost:3001/categorias
-```
-
----
-
-## 4. Iniciar o Front-end
+## 3. Iniciar o Front-end
 
 Em outro terminal execute:
 
@@ -423,12 +395,6 @@ http://localhost:5173
 
 ```bash
 npm run dev
-```
-
-### Executar JSON Server
-
-```bash
-npm run server
 ```
 
 ### Gerar build de produção
