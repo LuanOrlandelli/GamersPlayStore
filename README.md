@@ -26,22 +26,19 @@ Além dos requisitos obrigatórios do desafio, foram implementadas funcionalidad
 
 ## Página Inicial
 
-![Home](<img width="1397" height="944" alt="Home" src="https://github.com/user-attachments/assets/18b8e263-9116-46ae-b375-ed3577627540" />)
+<img width="1397" height="944" alt="Home" src="https://github.com/user-attachments/assets/18b8e263-9116-46ae-b375-ed3577627540" />
 
 ## Detalhes do Produto
 
-![Produto](<img width="1193" height="944" alt="Produto" src="https://github.com/user-attachments/assets/78b25931-66fe-4a90-8548-0fae736f780b" />
-)
+<img width="1193" height="944" alt="Produto" src="https://github.com/user-attachments/assets/78b25931-66fe-4a90-8548-0fae736f780b" />
 
 ## Carrinho Lateral
 
-![Carrinho](<img width="1422" height="941" alt="Carrinho Lateral" src="https://github.com/user-attachments/assets/d7285e4d-2bd5-4d68-be4f-5700ccb9e7f2" />
-)
+<img width="1422" height="941" alt="Carrinho Lateral" src="https://github.com/user-attachments/assets/d7285e4d-2bd5-4d68-be4f-5700ccb9e7f2" />
 
 ## Favoritos
 
-![Favoritos](<img width="1130" height="940" alt="Favoritos" src="https://github.com/user-attachments/assets/981b5aca-639b-4d9f-bf7d-6636d451ca5b" />
-)
+<img width="1130" height="940" alt="Favoritos" src="https://github.com/user-attachments/assets/981b5aca-639b-4d9f-bf7d-6636d451ca5b" />
 
 ---
 
