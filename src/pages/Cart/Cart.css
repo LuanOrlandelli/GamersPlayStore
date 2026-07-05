@@ -25,9 +25,9 @@
   display: flex;
   gap: 20px;
   padding: 20px;
-  background: #fff;
+  background: var(--bg-secondary);
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px var(--shadow-color);
 }
 
 .cart-item img {
@@ -80,9 +80,9 @@
 .summary-card {
   height: fit-content;
   padding: 25px;
-  background: white;
+  background: var(--bg-secondary);
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px var(--shadow-color);
 }
 
 .summary-card h2 {

@@ -24,7 +24,7 @@
 
 .description {
   margin-bottom: 20px;
-  color: #4b5563;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -36,7 +36,7 @@
 
 .installments {
   margin: 10px 0;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .stock {

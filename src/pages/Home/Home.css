@@ -32,11 +32,12 @@
 .search-area select {
   width: 100%;
   padding: 14px 18px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   font-size: 1rem;
   outline: none;
-  background-color: #ffffff;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .search-area select {
@@ -71,10 +72,10 @@
 
 .filters button {
   padding: 10px 16px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border-color);
   border-radius: 999px;
-  background-color: #ffffff;
-  color: #111827;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -88,15 +89,32 @@
 .empty-products {
   padding: 30px;
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: var(--bg-secondary);
   text-align: center;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .products-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+}
+
+.search-area select {
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+}
+
+body.dark .search-area select {
+  color: #f8fafc;
+  background-color: #1e293b;
+  border-color: #334155;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' viewBox='0 0 20 20'%3E%3Cpath fill='%23f8fafc' d='M5.5 7.5L10 12l4.5-4.5'/%3E%3C/svg%3E");
+}
+
+body.dark .search-area select option {
+  background-color: #1e293b;
+  color: #f8fafc;
 }
 
 @media (max-width: 1100px) {

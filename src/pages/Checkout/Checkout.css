@@ -9,10 +9,10 @@
 }
 
 .checkout-card {
-  background: #ffffff;
+  background: var(--bg-secondary);
   border-radius: 14px;
   padding: 30px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px var(--shadow-color);
 }
 
 .checkout-items {
@@ -27,11 +27,11 @@
   justify-content: space-between;
   gap: 20px;
   padding-bottom: 18px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .checkout-item p {
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .checkout-summary {
