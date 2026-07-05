@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
+import AddToCartModal from "../AddToCartModal/AddToCartModal";
 import "./ProductCard.css";
 
 function ProductCard({ produto }) {
   const { addToCart } = useCart();
-  const [showToast, setShowToast] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const precoFormatado = produto.preco.toLocaleString("pt-BR", {
     style: "currency",
@@ -19,19 +20,16 @@ function ProductCard({ produto }) {
 
   function handleAddToCart() {
     addToCart(produto);
-    setShowToast(true);
-
-    setTimeout(() => {
-      setShowToast(false);
-    }, 2000);
+    setShowModal(true);
   }
 
   return (
     <>
-      {showToast && (
-        <div className="card-toast">
-          Produto adicionado ao carrinho!
-        </div>
+      {showModal && (
+        <AddToCartModal
+          produto={produto}
+          onClose={() => setShowModal(false)}
+        />
       )}
 
       <article className="product-card">
@@ -59,24 +57,22 @@ function ProductCard({ produto }) {
 
                 <button
                   className="mini-cart-button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
                     handleAddToCart();
                   }}
                   title="Adicionar ao carrinho"
+                  type="button"
                 >
                   🛒+
                 </button>
               </div>
 
-              <p className="installments">
-                12x de {parcela} sem juros
-              </p>
+              <p className="installments">12x de {parcela} sem juros</p>
             </div>
           </div>
         </Link>
-
       </article>
     </>
   );

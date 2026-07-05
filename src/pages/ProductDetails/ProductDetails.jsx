@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import { useCart } from "../../context/CartContext";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import AddToCartModal from "../../components/AddToCartModal/AddToCartModal";
 import "./ProductDetails.css";
 
 function ProductDetails() {
@@ -12,7 +13,7 @@ function ProductDetails() {
   const [produto, setProduto] = useState(null);
   const [produtosRelacionados, setProdutosRelacionados] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showToast, setShowToast] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     async function carregarProduto() {
@@ -45,11 +46,7 @@ function ProductDetails() {
 
   function handleAddToCart() {
     addToCart(produto);
-    setShowToast(true);
-
-    setTimeout(() => {
-      setShowToast(false);
-    }, 2500);
+    setShowModal(true);
   }
 
   if (loading) {
@@ -72,7 +69,12 @@ function ProductDetails() {
 
   return (
     <>
-      {showToast && <div className="toast">Produto adicionado ao carrinho!</div>}
+      {showModal && (
+        <AddToCartModal
+          produto={produto}
+          onClose={() => setShowModal(false)}
+        />
+      )}
 
       <main className="product-details-page">
         <section className="product-details-container">

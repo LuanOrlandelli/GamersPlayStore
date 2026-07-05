@@ -1,0 +1,68 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background-color: rgba(15, 23, 42, 0.65);
+}
+
+.add-cart-modal {
+  width: min(420px, 100%);
+  padding: 28px;
+  border-radius: 18px;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+
+.add-cart-modal h2 {
+  margin-bottom: 12px;
+  color: #16a34a;
+}
+
+.add-cart-modal p {
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.continue-button,
+.go-cart-button {
+  flex: 1;
+  padding: 13px 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.continue-button {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.go-cart-button {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.go-cart-button:hover {
+  background-color: #1d4ed8;
+}
+
+@media (max-width: 480px) {
+  .modal-actions {
+    flex-direction: column;
+  }
+}
