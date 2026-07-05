@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useTheme } from "../../context/ThemeContext";
+import { useFavorites } from "../../context/FavoritesContext";
 import CartDrawer from "../CartDrawer/CartDrawer";
 import "./Header.css";
 
 function Header() {
   const { cartItems } = useCart();
+  const { favoriteItems } = useFavorites();
   const { theme, toggleTheme } = useTheme();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -24,6 +26,7 @@ function Header() {
           </Link>
 
           <nav className="nav-actions">
+
             <button
               className={`theme-switch ${theme === "dark" ? "dark" : ""}`}
               onClick={toggleTheme}
@@ -38,6 +41,10 @@ function Header() {
                 {theme === "dark" ? "☾" : "☀"}
               </span>
             </button>
+            
+            <Link to="/favoritos" className="favorites-link">
+              ♥ Favoritos ({favoriteItems.length})
+            </Link>
 
             <button
               className="cart-link cart-button"

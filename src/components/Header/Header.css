@@ -37,6 +37,11 @@
   font-size: 1rem;
 }
 
+.favorites-link {
+  color: white;
+  font-weight: 600;
+}
+
 .theme-switch {
   position: relative;
   width: 118px;

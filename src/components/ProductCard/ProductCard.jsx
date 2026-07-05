@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
+import { useFavorites } from "../../context/FavoritesContext";
 import AddToCartModal from "../AddToCartModal/AddToCartModal";
 import "./ProductCard.css";
 
 function ProductCard({ produto }) {
   const { addToCart } = useCart();
+  const { toggleFavorite, isFavorite } = useFavorites();
   const [showModal, setShowModal] = useState(false);
+
+  const favorited = isFavorite(produto.id);
 
   const precoFormatado = produto.preco.toLocaleString("pt-BR", {
     style: "currency",
@@ -23,6 +27,12 @@ function ProductCard({ produto }) {
     setShowModal(true);
   }
 
+  function handleFavoriteClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleFavorite(produto);
+  }
+
   return (
     <>
       {showModal && (
@@ -33,6 +43,19 @@ function ProductCard({ produto }) {
       )}
 
       <article className="product-card">
+        <button
+          className={`favorite-button ${favorited ? "active" : ""}`}
+          onClick={handleFavoriteClick}
+          type="button"
+          title={
+            favorited
+              ? "Remover dos favoritos"
+              : "Adicionar aos favoritos"
+          }
+        >
+          {favorited ? "♥" : "♡"}
+        </button>
+
         <Link to={`/produto/${produto.id}`} className="product-card-link">
           <img
             src={produto.imagem}

@@ -1,4 +1,5 @@
 .product-card {
+  position: relative;
   width: 100%;
   min-height: 510px;
   background-color: var(--bg-secondary);
@@ -15,6 +16,52 @@
 .product-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 22px var(--shadow-color);
+}
+
+.favorite-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+
+  background-color: rgba(255, 255, 255, 0.92);
+  color: #6b7280;
+
+  font-size: 1.45rem;
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+  transition: transform 0.2s ease, background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.favorite-button:hover {
+  transform: scale(1.08);
+  color: #dc2626;
+}
+
+.favorite-button.active {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+body.dark .favorite-button {
+  background-color: rgba(15, 23, 42, 0.88);
+  color: #cbd5e1;
+}
+
+body.dark .favorite-button.active {
+  background-color: rgba(220, 38, 38, 0.18);
+  color: #f87171;
 }
 
 .product-card-link {
@@ -72,22 +119,16 @@
   color: var(--text-primary);
 }
 
-.price {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #16a34a;
-}
-
-.installments {
-  margin-top: 4px;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
 .price-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #16a34a;
 }
 
 .mini-cart-button {
@@ -95,7 +136,7 @@
   height: 38px;
 
   border: none;
-  border-radius: 30%;
+  border-radius: 50%;
 
   background-color: #2563eb;
   color: white;
@@ -113,6 +154,12 @@
 .mini-cart-button:hover {
   transform: scale(1.08);
   background-color: #1d4ed8;
+}
+
+.installments {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 }
 
 .card-toast {
