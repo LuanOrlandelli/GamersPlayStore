@@ -5,19 +5,33 @@ import "./Home.css";
 
 function Home() {
   const [produtos, setProdutos] = useState([]);
+  const [categorias, setCategorias] = useState([]);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState("todos");
 
   useEffect(() => {
-    async function carregarProdutos() {
+    async function carregarDados() {
       try {
-        const response = await api.get("/produtos");
-        setProdutos(response.data);
+        const [produtosResponse, categoriasResponse] = await Promise.all([
+          api.get("/produtos"),
+          api.get("/categorias"),
+        ]);
+
+        setProdutos(produtosResponse.data);
+        setCategorias(categoriasResponse.data);
       } catch (error) {
-        console.error("Erro ao carregar produtos:", error);
+        console.error("Erro ao carregar dados:", error);
       }
     }
 
-    carregarProdutos();
+    carregarDados();
   }, []);
+
+  const produtosFiltrados =
+    categoriaSelecionada === "todos"
+      ? produtos
+      : produtos.filter(
+          (produto) => produto.categoria_id === Number(categoriaSelecionada)
+        );
 
   return (
     <main className="home-container">
@@ -26,8 +40,29 @@ function Home() {
         <p>Os melhores produtos gamers para o seu setup.</p>
       </section>
 
+      <section className="filters">
+        <button
+          className={categoriaSelecionada === "todos" ? "active" : ""}
+          onClick={() => setCategoriaSelecionada("todos")}
+        >
+          Todos
+        </button>
+
+        {categorias.map((categoria) => (
+          <button
+            key={categoria.id}
+            className={
+              categoriaSelecionada === String(categoria.id) ? "active" : ""
+            }
+            onClick={() => setCategoriaSelecionada(String(categoria.id))}
+          >
+            {categoria.nome}
+          </button>
+        ))}
+      </section>
+
       <section className="products-grid">
-        {produtos.map((produto) => (
+        {produtosFiltrados.map((produto) => (
           <ProductCard key={produto.id} produto={produto} />
         ))}
       </section>
