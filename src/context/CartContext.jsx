@@ -6,9 +6,7 @@ export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
   function addToCart(product) {
-    const itemExists = cartItems.find(
-      (item) => item.id === product.id
-    );
+    const itemExists = cartItems.find((item) => item.id === product.id);
 
     if (itemExists) {
       setCartItems(
@@ -53,9 +51,11 @@ export function CartProvider({ children }) {
   }
 
   function removeFromCart(id) {
-    setCartItems(
-      cartItems.filter((item) => item.id !== id)
-    );
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  }
+
+  function clearCart() {
+    setCartItems([]);
   }
 
   const value = {
@@ -64,13 +64,10 @@ export function CartProvider({ children }) {
     increaseQuantity,
     decreaseQuantity,
     removeFromCart,
+    clearCart,
   };
 
-  return (
-    <CartContext.Provider value={value}>
-      {children}
-    </CartContext.Provider>
-  );
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
 export function useCart() {
