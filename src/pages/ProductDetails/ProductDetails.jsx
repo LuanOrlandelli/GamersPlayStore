@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import { useCart } from "../../context/CartContext";
+import { useFavorites } from "../../context/FavoritesContext";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import AddToCartModal from "../../components/AddToCartModal/AddToCartModal";
 import "./ProductDetails.css";
@@ -9,6 +10,7 @@ import "./ProductDetails.css";
 function ProductDetails() {
   const { id } = useParams();
   const { addToCart } = useCart();
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   const [produto, setProduto] = useState(null);
   const [produtosRelacionados, setProdutosRelacionados] = useState([]);
@@ -57,6 +59,8 @@ function ProductDetails() {
     return <h2 className="loading-message">Produto não encontrado.</h2>;
   }
 
+  const favorited = isFavorite(produto.id);
+
   const precoFormatado = produto.preco.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -94,12 +98,31 @@ function ProductDetails() {
           </div>
 
           <div className="product-info-container">
-            <div className="details-badges">
-              {produto.destaque && <span className="details-badge">Destaque</span>}
+            <div className="details-top-row">
+              <div className="details-badges">
+                {produto.destaque && (
+                  <span className="details-badge">Destaque</span>
+                )}
 
-              <span className={`details-stock-badge ${estoqueClasse}`}>
-                {estoqueTexto}
-              </span>
+                <span className={`details-stock-badge ${estoqueClasse}`}>
+                  {estoqueTexto}
+                </span>
+              </div>
+
+              <button
+                className={`details-favorite-button ${
+                  favorited ? "active" : ""
+                }`}
+                onClick={() => toggleFavorite(produto)}
+                type="button"
+                title={
+                  favorited
+                    ? "Remover dos favoritos"
+                    : "Adicionar aos favoritos"
+                }
+              >
+                {favorited ? "♥" : "♡"}
+              </button>
             </div>
 
             <h1>{produto.nome}</h1>
@@ -119,7 +142,9 @@ function ProductDetails() {
               onClick={handleAddToCart}
               disabled={produto.estoque === 0}
             >
-              {produto.estoque === 0 ? "Produto esgotado" : "Adicionar ao Carrinho"}
+              {produto.estoque === 0
+                ? "Produto esgotado"
+                : "Adicionar ao Carrinho"}
             </button>
 
             <div className="purchase-benefits">
